@@ -24,12 +24,12 @@ public class RestfulBookerExamples {
                 "    \"password\" : \"password123\"\n" +
                 "}";
 
-      //  RequestBody requestAuthBody = RequestBody.create(authBody, MediaType.parse("JSON"));
+        RequestBody requestAuthBody = RequestBody.create(authBody, MediaType.parse("JSON"));
 
         Request requestAuth = new Request.Builder()
                 .url(httpUrl)
                 .addHeader("Content-Type", "application/json")
-           //     .post(requestAuthBody)
+                .post(requestAuthBody)
                 .build();
 
         Response responseAuth = okHttpClient.newCall(requestAuth).execute();
@@ -60,14 +60,14 @@ public class RestfulBookerExamples {
                 "    \"additionalneeds\" : \"Breakfast\"\n" +
                 "}";
 
-        //RequestBody requestCreateBookingBody = RequestBody.create(createBookingJson, MediaType.parse("JSON"));
+        RequestBody requestCreateBookingBody = RequestBody.create(createBookingJson, MediaType.parse("JSON"));
 
         Request requestCreateBooking = new Request.Builder()
                 .url("https://restful-booker.herokuapp.com/booking")
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json")
                 .addHeader("Cookie", String.format("token=%s", token))
-               // .post(requestCreateBookingBody)
+                .post(requestCreateBookingBody)
                 .build();
 
         Response createBookingResponse = okHttpClient.newCall(requestCreateBooking).execute();
