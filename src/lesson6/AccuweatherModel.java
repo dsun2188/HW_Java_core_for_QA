@@ -16,8 +16,8 @@ public class AccuweatherModel implements WeatherModel {
     private static final String VERSION = "v1";
     private static final String DAILY = "daily";
     private static final String ONE_DAY = "1day";
-    private static final String API_KEY = "pXJd8MokcZCdrd2MsoGl2DBZAyCa0zvv";
-    private static final String API_KEY_QUERY_PARAM = "apikey";
+    private static final String API_KEY = "9A9gGw11kw8mm6qA02L8L2kelTKAJKJo";
+    private static final String API_KEY_QUERY_PROPERTY = "apikey";
     private static final String LOCATIONS = "locations";
     private static final String CITIES = "cities";
     private static final String AUTOCOMPLETE = "autocomplete";
@@ -37,8 +37,8 @@ public class AccuweatherModel implements WeatherModel {
                         .addPathSegment(VERSION)
                         .addPathSegment(DAILY)
                         .addPathSegment(ONE_DAY)
-                        .addPathSegment(detectCityKey(сity))
-                        .addQueryParameter(API_KEY_QUERY_PARAM, API_KEY)
+                        .addPathSegment("295212")
+                        .addQueryParameter(API_KEY_QUERY_PROPERTY, API_KEY)
                         .build();
 
                 Request request = new Request.Builder()
@@ -60,7 +60,7 @@ public class AccuweatherModel implements WeatherModel {
     }
 
     public static void  main(String[] args) throws IOException {
-        (new AccuweatherModel()).getWeather("Moscow", Period.NOW);
+        (new AccuweatherModel()).getWeather("Санкт-Петербург", Period.NOW);
     }
 
     private String detectCityKey(String сity) {
