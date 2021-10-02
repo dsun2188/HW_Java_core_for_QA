@@ -1,5 +1,6 @@
 package lesson6;
 
+import lesson6.entity.Weather;
 import okhttp3.OkHttpClient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.HttpUrl;;
@@ -7,6 +8,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
+import java.util.List;
 
 public class AccuweatherModel implements WeatherModel {
     //http://dataservice.accuweather.com/forecasts/v1/daily/1day/349727
@@ -16,6 +18,7 @@ public class AccuweatherModel implements WeatherModel {
     private static final String VERSION = "v1";
     private static final String DAILY = "daily";
     private static final String ONE_DAY = "1day";
+    private static final String FIVE_DAYS = "5day";
     private static final String API_KEY = "9A9gGw11kw8mm6qA02L8L2kelTKAJKJo";
     private static final String API_KEY_QUERY_PROPERTY = "apikey";
     private static final String LOCATIONS = "locations";
@@ -37,7 +40,7 @@ public class AccuweatherModel implements WeatherModel {
                         .addPathSegment(VERSION)
                         .addPathSegment(DAILY)
                         .addPathSegment(ONE_DAY)
-                        .addPathSegment("295212")
+                        .addPathSegment("295212") //(detectCityKey(selectedCity))
                         .addQueryParameter(API_KEY_QUERY_PROPERTY, API_KEY)
                         .build();
 
@@ -54,10 +57,40 @@ public class AccuweatherModel implements WeatherModel {
                 //dataBaseRepository.saveWeatherToDataBase(new Weather()) - тут после парсинга добавляем данные в БД
                 break;
             case FIVE_DAYS:
+
                 //TODO*: реализовать вывод погоды на 5 дней
                 break;
         }
     }
+//    @Override
+//    public List<Weather> getSavedToDBWeather() {
+//       // return dataBaseRepository.getSavedToDBWeather();
+//    }
+//    private String detectCityKey(String selectCity) throws IOException {
+//        //http://dataservice.accuweather.com/locations/v1/cities/autocomplete
+//        HttpUrl httpUrl = new HttpUrl.Builder()
+//                .scheme(PROTOKOL)
+//                .host(BASE_HOST)
+//                .addPathSegment(LOCATIONS)
+//                .addPathSegment(VERSION)
+//                .addPathSegment(CITIES)
+//                .addPathSegment(AUTOCOMPLETE)
+//                .addQueryParameter(API_KEY_QUERY_PROPERTY, API_KEY)
+//                .addQueryParameter("q", selectCity)
+//                .build();
+//
+//        Request request = new Request.Builder()
+//                .url(httpUrl)
+//                .get()
+//                .addHeader("accept", "application/json")
+//                .build();
+//
+//        Response response = okHttpClient.newCall(request).execute();
+//        String responseString = response.body().string();
+//
+//        String cityKey = objectMapper.readTree(responseString).get(0).at("/Key").asText();
+//        return cityKey;
+
 
     public static void  main(String[] args) throws IOException {
         (new AccuweatherModel()).getWeather("Санкт-Петербург", Period.NOW);
