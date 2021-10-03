@@ -12,7 +12,7 @@ public class Controller {
     public Controller() {
         variants.put(1, Period.NOW);
         variants.put(5, Period.FIVE_DAYS);
-    //  variants.put(2, Period.DB);
+
     }
 
     public void getWeather(String userInput, String selectedCity) throws IOException {
@@ -24,10 +24,10 @@ public class Controller {
                 break;
 
             case FIVE_DAYS:
-                throw new IOException("Метод не реализован!");
+             //   throw new IOException("Метод не реализован!");
+                weatherModel.getWeather(selectedCity, Period.FIVE_DAYS);
 
-//            case DB:
-//                weatherModel.getSavedToDBWeather();
+
         }
     }
 }

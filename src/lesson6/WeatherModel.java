@@ -8,6 +8,7 @@ import java.util.List;
 public interface WeatherModel {
     void getWeather(String city, Period period) throws IOException;
 
-  //  public List<Weather> getSavedToDBWeather();
+
+    // public List<Weather> getSavedToDBWeather();
 
 }
